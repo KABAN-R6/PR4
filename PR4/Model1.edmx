@@ -23,14 +23,39 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="HumanSet" EntityType="Database1Model.Human" />
+          <EntitySet Name="HumannSet" EntityType="Database1Model.Humann" />
           <EntitySet Name="PermitSet" EntityType="Database1Model.Permit" />
-          <EntitySet Name="routeSet" EntityType="Database1Model.route" />
-          <EntitySet Name="CountrySet" EntityType="Database1Model.Country" />
-          <EntitySet Name="citySet" EntityType="Database1Model.city" />
-          <EntitySet Name="HotelSet" EntityType="Database1Model.Hotel" />
+          <EntitySet Name="RouteeSet" EntityType="Database1Model.Routee" />
+          <EntitySet Name="CountryySet" EntityType="Database1Model.Countryy" />
+          <EntitySet Name="CityySet" EntityType="Database1Model.Cityy" />
+          <EntitySet Name="HotellSet" EntityType="Database1Model.Hotell" />
+          <EntitySet Name="ServicceSet" EntityType="Database1Model.Servicce" />
+          <AssociationSet Name="CountryyRoutee" Association="Database1Model.CountryyRoutee">
+            <End Role="Countryy" EntitySet="CountryySet" />
+            <End Role="Routee" EntitySet="RouteeSet" />
+          </AssociationSet>
+          <AssociationSet Name="CityyRoutee" Association="Database1Model.CityyRoutee">
+            <End Role="Cityy" EntitySet="CityySet" />
+            <End Role="Routee" EntitySet="RouteeSet" />
+          </AssociationSet>
+          <AssociationSet Name="HotellPermit" Association="Database1Model.HotellPermit">
+            <End Role="Hotell" EntitySet="HotellSet" />
+            <End Role="Permit" EntitySet="PermitSet" />
+          </AssociationSet>
+          <AssociationSet Name="RouteePermit" Association="Database1Model.RouteePermit">
+            <End Role="Routee" EntitySet="RouteeSet" />
+            <End Role="Permit" EntitySet="PermitSet" />
+          </AssociationSet>
+          <AssociationSet Name="HumannPermit" Association="Database1Model.HumannPermit">
+            <End Role="Humann" EntitySet="HumannSet" />
+            <End Role="Permit" EntitySet="PermitSet" />
+          </AssociationSet>
+          <AssociationSet Name="ServicceHotell" Association="Database1Model.ServicceHotell">
+            <End Role="Servicce" EntitySet="ServicceSet" />
+            <End Role="Hotell" EntitySet="HotellSet" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Human">
+        <EntityType Name="Humann">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -39,38 +64,93 @@
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="Middlename" Type="String" Nullable="false" />
           <Property Name="age" Type="String" Nullable="false" />
+          <NavigationProperty Name="Permit" Relationship="Database1Model.HumannPermit" FromRole="Humann" ToRole="Permit" />
         </EntityType>
         <EntityType Name="Permit">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Property1" Type="String" Nullable="false" />
+          <Property Name="Route" Type="String" Nullable="false" />
+          <Property Name="Hotel" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <Property Name="Human" Type="String" Nullable="false" />
+          <NavigationProperty Name="Hotell" Relationship="Database1Model.HotellPermit" FromRole="Permit" ToRole="Hotell" />
+          <NavigationProperty Name="Routee" Relationship="Database1Model.RouteePermit" FromRole="Permit" ToRole="Routee" />
+          <NavigationProperty Name="Humann" Relationship="Database1Model.HumannPermit" FromRole="Permit" ToRole="Humann" />
         </EntityType>
-        <EntityType Name="route">
+        <EntityType Name="Routee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Countryy" Relationship="Database1Model.CountryyRoutee" FromRole="Routee" ToRole="Countryy" />
+          <NavigationProperty Name="Cityy" Relationship="Database1Model.CityyRoutee" FromRole="Routee" ToRole="Cityy" />
+          <NavigationProperty Name="Permit" Relationship="Database1Model.RouteePermit" FromRole="Routee" ToRole="Permit" />
         </EntityType>
-        <EntityType Name="Country">
+        <EntityType Name="Countryy">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Routee" Relationship="Database1Model.CountryyRoutee" FromRole="Countryy" ToRole="Routee" />
         </EntityType>
-        <EntityType Name="city">
+        <EntityType Name="Cityy">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Routee" Relationship="Database1Model.CityyRoutee" FromRole="Cityy" ToRole="Routee" />
         </EntityType>
-        <EntityType Name="Hotel">
+        <EntityType Name="Hotell">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="service" Type="String" Nullable="false" />
+          <Property Name="Prise" Type="String" Nullable="false" />
+          <NavigationProperty Name="Permit" Relationship="Database1Model.HotellPermit" FromRole="Hotell" ToRole="Permit" />
+          <NavigationProperty Name="Servicce" Relationship="Database1Model.ServicceHotell" FromRole="Hotell" ToRole="Servicce" />
         </EntityType>
+        <EntityType Name="Servicce">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <NavigationProperty Name="Hotell" Relationship="Database1Model.ServicceHotell" FromRole="Servicce" ToRole="Hotell" />
+        </EntityType>
+        <Association Name="CountryyRoutee">
+          <End Type="Database1Model.Countryy" Role="Countryy" Multiplicity="1" />
+          <End Type="Database1Model.Routee" Role="Routee" Multiplicity="*" />
+        </Association>
+        <Association Name="CityyRoutee">
+          <End Type="Database1Model.Cityy" Role="Cityy" Multiplicity="1" />
+          <End Type="Database1Model.Routee" Role="Routee" Multiplicity="*" />
+        </Association>
+        <Association Name="HotellPermit">
+          <End Type="Database1Model.Hotell" Role="Hotell" Multiplicity="1" />
+          <End Type="Database1Model.Permit" Role="Permit" Multiplicity="*" />
+        </Association>
+        <Association Name="RouteePermit">
+          <End Type="Database1Model.Routee" Role="Routee" Multiplicity="1" />
+          <End Type="Database1Model.Permit" Role="Permit" Multiplicity="*" />
+        </Association>
+        <Association Name="HumannPermit">
+          <End Type="Database1Model.Humann" Role="Humann" Multiplicity="1" />
+          <End Type="Database1Model.Permit" Role="Permit" Multiplicity="*" />
+        </Association>
+        <Association Name="ServicceHotell">
+          <End Type="Database1Model.Servicce" Role="Servicce" Multiplicity="1" />
+          <End Type="Database1Model.Hotell" Role="Hotell" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -25,11 +25,12 @@ namespace PR4
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Human> HumanSet { get; set; }
+        public virtual DbSet<Humann> HumannSet { get; set; }
         public virtual DbSet<Permit> PermitSet { get; set; }
-        public virtual DbSet<route> routeSet { get; set; }
-        public virtual DbSet<Country> CountrySet { get; set; }
-        public virtual DbSet<city> citySet { get; set; }
-        public virtual DbSet<Hotel> HotelSet { get; set; }
+        public virtual DbSet<Routee> RouteeSet { get; set; }
+        public virtual DbSet<Countryy> CountryySet { get; set; }
+        public virtual DbSet<Cityy> CityySet { get; set; }
+        public virtual DbSet<Hotell> HotellSet { get; set; }
+        public virtual DbSet<Servicce> ServicceSet { get; set; }
     }
 }

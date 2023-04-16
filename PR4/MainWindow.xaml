@@ -7,6 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="Permit" 
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  MinWidth="500"
+                  
+                  AutoGenerateColumns="False" Height="277" SelectionChanged="Permit_SelectionChanged" RenderTransformOrigin="0.5,0.5" Width="200" Margin="0,10,0,0">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+
+
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn  Header="маршрут" Binding="{Binding Path=(???).Route.Routee.Name}"/>
+                <DataGridTextColumn  Header="отель" Binding="{Binding Path=(???).Hotel.Hotell.name}"/>
+                <DataGridTextColumn  Header="цена" Binding="{Binding Path=(???).Price}"/>
+                <DataGridTextColumn  Header="Человек" Binding="{Binding Path=(???).Human.Humann.Last.Name}"/>-->
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

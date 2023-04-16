@@ -12,8 +12,19 @@ namespace PR4
     using System;
     using System.Collections.Generic;
     
-    public partial class city
+    public partial class Servicce
     {
+        
+        public Servicce()
+        {
+            this.Hotell = new HashSet<Hotell>();
+        }
+    
         public int Id { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
+    
+        
+        public virtual ICollection<Hotell> Hotell { get; set; }
     }
 }

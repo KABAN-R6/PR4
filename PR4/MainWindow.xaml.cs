@@ -20,9 +20,19 @@ namespace PR4
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ExampleDBEntities _db;
         public MainWindow()
         {
             InitializeComponent();
+
+            _db = new ExampleDBEntities();
+
+            Permit.ItemsSource = _db.Permit.ToList();
+        }
+
+        private void Permit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

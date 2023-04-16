@@ -12,8 +12,18 @@ namespace PR4
     using System;
     using System.Collections.Generic;
     
-    public partial class route
+    public partial class Cityy
     {
+        
+        public Cityy()
+        {
+            this.Routee = new HashSet<Routee>();
+        }
+    
         public int Id { get; set; }
+        public string name { get; set; }
+    
+       
+        public virtual ICollection<Routee> Routee { get; set; }
     }
 }

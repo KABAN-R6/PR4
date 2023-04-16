@@ -12,16 +12,21 @@ namespace PR4
     using System;
     using System.Collections.Generic;
     
-    public partial class Permit
+    public partial class Humann
     {
-        public int Id { get; set; }
-        public string Route { get; set; }
-        public string Hotel { get; set; }
-        public string Price { get; set; }
-        public string Human { get; set; }
+        
+        public Humann()
+        {
+            this.Permit = new HashSet<Permit>();
+        }
     
-        public virtual Hotell Hotell { get; set; }
-        public virtual Routee Routee { get; set; }
-        public virtual Humann Humann { get; set; }
+        public int Id { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Middlename { get; set; }
+        public string age { get; set; }
+    
+        
+        public virtual ICollection<Permit> Permit { get; set; }
     }
 }
